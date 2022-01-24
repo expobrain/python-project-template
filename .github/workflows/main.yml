@@ -20,7 +20,7 @@ jobs:
         with:
           path: |
             ~/.cache/pip
-          key: ${{ runner.os }}-{{ matrix.python-version }}-poetry-${{ hashFiles('**/poetry.lock') }}
+          key: ${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
       - run: pip install poetry
       - run: poetry install
       - run: poetry run make test
