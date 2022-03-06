@@ -1,6 +1,6 @@
 [tool.black]
 line-length = 99
-target-version = ["py36", "py37", "py38", "py39"]
+target-version = ["py36", "py37", "py38", "py39", "py310"]
 exclude = '''
 /(
     \.git|venv|.venv
@@ -10,7 +10,6 @@ exclude = '''
 [tool.isort]
 profile = "black"
 float_to_top = true
-line_length = 79
 skip_glob = ".venv,venv"
 
 [tool.poetry]
@@ -25,7 +24,7 @@ packages = [{ include = "<project-package>" }]
 
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.10"
 
 [tool.poetry.dev-dependencies]
 autoflake = "^1.4"
