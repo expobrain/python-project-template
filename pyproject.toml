@@ -3,14 +3,14 @@ line-length = 99
 target-version = ["py37", "py38", "py39", "py310"]
 exclude = '''
 /(
-    \.git|venv|.venv
+    \.git|.venv
 )/
 '''
 
 [tool.isort]
 profile = "black"
 float_to_top = true
-skip_glob = ".venv,venv"
+skip_glob = ".venv"
 
 [tool.poetry]
 name = "<project-name>"
