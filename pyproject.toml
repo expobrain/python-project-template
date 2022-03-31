@@ -15,12 +15,12 @@ skip_glob = ".venv"
 [tool.poetry]
 name = "<project-name>"
 version = "0.1.0"
-description = "<project description>"
+description = "<project-description>"
 repository = "https://github.com/expobrain/<project-name>"
 authors = ["Daniele Esposti <daniele.esposti@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{ include = "<project-package>" }]
+packages = [{ include = "<project-name>" }]
 
 [tool.poetry.dependencies]
 python = "^3.10"

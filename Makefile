@@ -8,7 +8,7 @@ fmt:
 		--remove-all-unused-imports \
 		--ignore-init-module-imports \
 		-r \
-		<project-package>
+		<project-name>
 	isort --profile black .
 	black .
 
@@ -21,13 +21,13 @@ check:
 		--ignore-init-module-imports \
 		-r \
 		-c \
-		<project-package>
+		<project-name>
 	isort --profile black -c .
 	black --check .
 
 lint:
-	mypy <project-package>
+	mypy <project-name>
 	flake8 .
 
 test:
-	pytest -x --cov=core --cov=<project-package> --cov-fail-under=90
+	pytest -x --cov=core --cov=<project-name> --cov-fail-under=90

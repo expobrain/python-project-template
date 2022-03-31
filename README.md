@@ -1,1 +1,1 @@
-# <python-package>
+# <project-name>
