@@ -36,7 +36,7 @@ pytest-cov = "^3.0.0"
 flake8 = "^4.0.1"
 pyupgrade = "^2.31.1"
 flake8-bugbear = "^22.6.22"
-pytest-icdiff = "^0.5"
+pytest-clarity = "^1.0.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
