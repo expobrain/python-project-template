@@ -27,7 +27,7 @@ packages = [{ include = "<project-name>" }]
 [tool.poetry.dependencies]
 python = "^3.10"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 autoflake = "^1.4"
 black = "^22.1"
 isort = "^5.10.1"
@@ -36,6 +36,7 @@ pdbpp = "^0.10.3"
 pytest = "^7.0.1"
 pytest-cov = "^4.0.0"
 flake8 = "^5.0.2"
+flake8-datetime-utcnow-plugin = "^0.1.2"
 pyupgrade = "^2.31.1"
 flake8-bugbear = "^22.6.22"
 pytest-clarity = "^1.0.1"
