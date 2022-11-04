@@ -42,6 +42,7 @@ flake8-bugbear = "^22.6.22"
 pytest-clarity = "^1.0.1"
 bandit = "^1.7.4"
 pytest-testmon = "^1.4.1"
+pytest-timeout = "^2.1.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -62,3 +63,6 @@ warn_return_any = true
 # [[tool.mypy.overrides]]
 # module = "google.auth.credentials"
 # ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+timeout = 10
