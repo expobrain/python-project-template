@@ -28,6 +28,7 @@ jobs:
         with:
           path: |
             ~/.cache/pip
+            .venv
           key: ${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
       - run: pip install poetry
       - run: poetry install
@@ -48,6 +49,7 @@ jobs:
         with:
           path: |
             ~/.cache/pip
+            .venv
           key: ${{ runner.os }}-3.11-${{ hashFiles('**/poetry.lock') }}
       - run: pip install poetry
       - run: poetry build
