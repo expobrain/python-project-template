@@ -1,4 +1,4 @@
-lint: bandit
+lint:
 	poetry run mypy .
 
 test:

@@ -28,18 +28,10 @@ packages = [{ include = "<project-name>" }]
 python = "^3.7,<3.12"
 
 [tool.poetry.group.dev.dependencies]
-autoflake = "^1.4"
-black = "^22.1"
-isort = "^5.10.1"
 mypy = "^0.981"
 pytest = "^7.0.1"
 pytest-cov = "^4.0.0"
-flake8 = "^5.0.2"
-flake8-datetime-utcnow-plugin = "^0.1.2"
-pyupgrade = "^2.31.1"
-flake8-bugbear = "^22.6.22"
 pytest-clarity = "^1.0.1"
-bandit = "^1.7.4"
 pytest-testmon = "^1.4.1"
 pytest-timeout = "^2.1.0"
 
