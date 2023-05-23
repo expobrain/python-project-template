@@ -8,8 +8,8 @@ updates:
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "{{ cookiecutter.dependabot_interval }}"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "{{ cookiecutter.dependabot_interval }}"

@@ -13,19 +13,18 @@ float_to_top = true
 skip_glob = ".venv"
 
 [tool.poetry]
-name = "<project-name>"
+name = "{{ cookiecutter.project_name}}"
 version = "0.1.0"
-description = "<project-description>"
-repository = "https://github.com/expobrain/<project-name>"
+description = "{{ cookiecutter.project_description }}"
+repository = "https://github.com/expobrain/{{ cookiecutter.project_name}}"
 authors = ["Daniele Esposti <daniele.esposti@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-# For libs
-# packages = [{ include = "<project-name>", from = "lib" }]
-packages = [{ include = "<project-name>" }]
+packages = [{ include = "{{ cookiecutter.project_name}}"{% if cookiecutter.is_library %}, from = "lib"{% endif %} }]
+
 
 [tool.poetry.dependencies]
-python = "^3.7,<3.12"
+python = "^{{ cookiecutter.python_version }},<3.12"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.2"
