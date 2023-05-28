@@ -13,14 +13,14 @@ float_to_top = true
 skip_glob = ".venv"
 
 [tool.poetry]
-name = "{{ cookiecutter.project_name}}"
+name = "{{ cookiecutter.project_name }}"
 version = "0.1.0"
 description = "{{ cookiecutter.project_description }}"
-repository = "https://github.com/expobrain/{{ cookiecutter.project_name}}"
+repository = "https://github.com/expobrain/{{ cookiecutter.project_name }}"
 authors = ["Daniele Esposti <daniele.esposti@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{ include = "{{ cookiecutter.project_name}}"{% if cookiecutter.is_library %}, from = "src"{% endif %} }]
+packages = [{ include = "{{ cookiecutter.project_name }}"{% if cookiecutter.is_library %}, from = "src"{% endif %} }]
 
 
 [tool.poetry.dependencies]
