@@ -4,5 +4,5 @@
   "directory_name": "{{ cookiecutter.project_name.lower().replace('-', '_') }}",
   "python_version": "3.11",
   "dependabot_interval": "monthly",
-  "is_library": false
+  "is_library": ["no", "yes"]
 }

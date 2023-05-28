@@ -86,3 +86,10 @@ repos:
       - id: python-check-mock-methods
       - id: python-no-log-warn
       - id: python-no-eval
+  {% if cookiecutter.is_library == "yes" -%}
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: 3.2.2
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+  {% endif -%}
