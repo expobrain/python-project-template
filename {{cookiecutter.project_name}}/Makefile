@@ -1,4 +1,4 @@
-lint:
+mypy:
 	poetry run mypy .
 
 test:
