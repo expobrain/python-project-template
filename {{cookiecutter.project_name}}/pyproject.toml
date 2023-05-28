@@ -20,7 +20,7 @@ repository = "https://github.com/expobrain/{{ cookiecutter.project_name}}"
 authors = ["Daniele Esposti <daniele.esposti@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{ include = "{{ cookiecutter.project_name}}"{% if cookiecutter.is_library %}, from = "lib"{% endif %} }]
+packages = [{ include = "{{ cookiecutter.project_name}}"{% if cookiecutter.is_library %}, from = "src"{% endif %} }]
 
 
 [tool.poetry.dependencies]
