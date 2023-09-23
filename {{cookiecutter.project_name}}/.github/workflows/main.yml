@@ -3,6 +3,10 @@ name: Unit testing, formatting & linting
 on:
   - push
 
+env:
+  PYTHON_VERSION_FOR_BUMPING: "{{ cookiecutter.python_version }}"
+  POETRY_VERSION: "1.6"
+
 concurrency:
   group: {{"${{"}} github.head_ref || github.run_id {{"}}"}}
   cancel-in-progress: true
@@ -14,14 +18,14 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: "{{ cookiecutter.python_version }}"
+          python-version: "{{"${{"}} env.PYTHON_VERSION_FOR_BUMPING {{"}}"}}"
       - name: Cache multiple paths
         uses: actions/cache@v3
         with:
           path: |
             ~/.cache/pip
             ~/.cache/pre-commit
-          key: {{"${{"}} runner.os {{"}}"}}-{{ cookiecutter.python_version }}-{{"${{"}} hashFiles('**/.pre-commit-config.yaml') {{"}}"}}
+          key: {{"${{"}} runner.os {{"}}"}}-{{"${{"}} env.PYTHON_VERSION_FOR_BUMPING {{"}}"}}-{{"${{"}} hashFiles('**/.pre-commit-config.yaml') {{"}}"}}
       - run: pip install -U pre-commit
       - run: pre-commit run -a
 
@@ -46,8 +50,8 @@ jobs:
             ~/.cache/pip
             .venv
           key: {{"${{"}} runner.os {{"}}"}}-{{"${{"}} matrix.python-version {{"}}"}}-{{"${{"}} hashFiles('**/poetry.lock') {{"}}"}}
-      - run: pip install -U poetry
-      - run: poetry install
+      - run: pip install poetry~=${{ env.POETRY_VERSION }}
+      - run: poetry install --no-interaction --no-ansi --sync
       - run: make test
       - run: make mypy
 
@@ -61,15 +65,15 @@ jobs:
     name: "Bump version and create changelog with commitizen"
     steps:
       - name: Check out
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Setup Python
         id: setup-python
-        uses: actions/setup-python@v4.5.0
+        uses: actions/setup-python@v4
         with:
-          python-version: "{{ cookiecutter.python_version }}"
-      - name: Cache multiple paths
+          python-version: "${{ env.PYTHON_VERSION_FOR_BUMPING }}"
+      - name: Cache virtual environment and pip
         uses: actions/cache@v3
         with:
           path: |
@@ -78,14 +82,16 @@ jobs:
           key: {{"${{"}} runner.os {{"}}"}}-{{"${{"}} matrix.python-version {{"}}"}}-{{"${{"}} hashFiles('**/poetry.lock') {{"}}"}}
       - name: Install dependencies
         run: |
-          pip install -U poetry
-          poetry config virtualenvs.in-project true
+          pip install poetry~=${{ env.POETRY_VERSION }}
           poetry install --with dev --no-interaction --no-ansi --sync
+
       - name: Create new version and changelog
         run: |
           poetry run cz --no-raise 21 bump --yes --changelog --check-consistency
+
           git config --local user.email "github-actions@githhub.com"
           git config --local user.name "Github Actions"
+
           git config --local pull.rebase true
           git pull origin $(git branch --show-current)
           git push -u origin HEAD:$(git branch --show-current)
@@ -106,14 +112,14 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: "{{ cookiecutter.python_version }}"
+          python-version: "{{"${{"}} env.PYTHON_VERSION_FOR_BUMPING {{"}}"}}"
       - name: Cache Pip
         uses: actions/cache@v3
         with:
           path: |
             ~/.cache/pip
             .venv
-          key: {{"${{"}} runner.os {{"}}"}}-{{ cookiecutter.python_version }}-{{"${{"}} hashFiles('**/poetry.lock') {{"}}"}}
+          key: {{"${{"}} runner.os {{"}}"}}-{{"${{"}} env.PYTHON_VERSION_FOR_BUMPING {{"}}"}}-{{"${{"}} hashFiles('**/poetry.lock') {{"}}"}}
       - run: pip install poetry
       - run: poetry build
       # From https://packaging.python.org/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/#publishing-the-distribution-to-pypi-and-testpypi
