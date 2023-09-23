@@ -50,7 +50,7 @@ jobs:
             ~/.cache/pip
             .venv
           key: {{"${{"}} runner.os {{"}}"}}-{{"${{"}} matrix.python-version {{"}}"}}-{{"${{"}} hashFiles('**/poetry.lock') {{"}}"}}
-      - run: pip install poetry~=${{ env.POETRY_VERSION }}
+      - run: pip install poetry~={{"${{"}} env.POETRY_VERSION {{"}}"}}
       - run: poetry install --no-interaction --no-ansi --sync
       - run: make test
       - run: make mypy
@@ -72,7 +72,7 @@ jobs:
         id: setup-python
         uses: actions/setup-python@v4
         with:
-          python-version: "${{ env.PYTHON_VERSION_FOR_BUMPING }}"
+          python-version: "{{"${{"}} env.PYTHON_VERSION_FOR_BUMPING {{"}}"}}
       - name: Cache virtual environment and pip
         uses: actions/cache@v3
         with:
@@ -82,7 +82,7 @@ jobs:
           key: {{"${{"}} runner.os {{"}}"}}-{{"${{"}} matrix.python-version {{"}}"}}-{{"${{"}} hashFiles('**/poetry.lock') {{"}}"}}
       - name: Install dependencies
         run: |
-          pip install poetry~=${{ env.POETRY_VERSION }}
+          pip install poetry~={{"${{"}} env.POETRY_VERSION {{"}}"}}
           poetry install --with dev --no-interaction --no-ansi --sync
 
       - name: Create new version and changelog
