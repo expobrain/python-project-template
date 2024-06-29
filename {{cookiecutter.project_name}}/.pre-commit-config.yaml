@@ -2,9 +2,9 @@ default_language_version:
   python: python{{ cookiecutter.python_version }}
 default_install_hook_types:
   - pre-commit
-  {% if cookiecutter.is_library == "yes" -%}
+{% if cookiecutter.is_library == "yes" -%}
   - commit-msg
-  {% endif -%}
+{% endif -%}
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
