@@ -24,7 +24,7 @@ packages = [{ include = "{{ cookiecutter.project_name }}"{% if cookiecutter.is_l
 
 
 [tool.poetry.dependencies]
-python = "^{{ cookiecutter.python_version }},<3.12"
+python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.2"
